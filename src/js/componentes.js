@@ -4,9 +4,13 @@ import { todolist}  from '../index.js'
 //Referencia en el html
 const divTodoList = document.querySelector('.todo-list');   
 const txtImput     = document.querySelector('.new-todo');     
-const btnBorrar   = document.querySelector('.clear-completed')
-const ulFiltros   = document.querySelector('.filters')
+const btnBorrar   = document.querySelector('.clear-completed');
+const ulFiltros   = document.querySelector('.filters');
 const anchorfiltro = document.querySelectorAll('.filtro');
+
+const filtro1 = document.querySelector('.filtro1');
+const filtro2 = document.querySelector('.filtro2');
+const filtro3 = document.querySelector('.filtro3');
 
 
 
@@ -91,39 +95,31 @@ btnBorrar.addEventListener('click', () => {
 
 })
 
+filtro1.addEventListener('click', (event)=>{
+        for(const elemento of divTodoList.children){
+            elemento.classList.remove('hidden');
+            const completado = elemento.classList.contains('completed');
+            if(completado){
+                 elemento.classList.add('hidden');
+            }   
+        }
+})
 
-
-
-ulFiltros.addEventListener('click', () =>{
-    
-    const filtro = event.target.text;  //Da undefined si si no es un texto
-    
-    if(!filtro){ return};
-    anchorfiltro.forEach((elem) => elem.classList.remove('selected'));
-    event.target.classList.add('selected');
-
+filtro2.addEventListener('click', (event)=>{
     for(const elemento of divTodoList.children){
-        //console.log(elemento);
-
         elemento.classList.remove('hidden');
         const completado = elemento.classList.contains('completed');
-        //console.log(completado);
-
-        switch(filtro){
-            case 'Pendientes':
-                if(completado){
-                    elemento.classList.add('hidden');
-                }
-                break;
-            case 'Completados':
-                if(!completado){
-                    elemento.classList.add('hidden');
-                }
-                break;
+        if(!completado){
+             elemento.classList.add('hidden');
         }
-
-        
     }
+    
+})
 
 
+filtro3.addEventListener('click', (event)=>{
+    for(const elemento of divTodoList.children){
+        elemento.classList.remove('hidden');
+    }
+    
 })
