@@ -1,7 +1,9 @@
-import { saludar } from './js/componentes.js';
 import './styles.css';
 
+import { Todo,Todolist } from './classes';
+import { crearTodoHtml } from './js/componentes';
 
-const nombre = 'Diego';
 
-saludar( nombre );
+export const todolist = new Todolist();
+
+todolist.todos.forEach(todo => crearTodoHtml (todo));
